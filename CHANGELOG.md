@@ -6,5 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [1.0.0] - YYYY-MM-DD
+## [1.0.0-alpha.2] - 2018-05-01
 ### Added
+- `.npmignore` file to reduce package size.
+
+### Changed
+- Path to main file in `package.json`
+
+## [1.0.0-alpha.1] - 2018-05-01
+Initial release.
+
