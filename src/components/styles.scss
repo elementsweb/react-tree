@@ -1,0 +1,15 @@
+@import "./variables";
+
+.tree {
+  .tree-item {
+    margin-left: $tree-base-spacing * 3;
+    
+    .tree-item__content {
+      padding: $tree-base-spacing * 0.75 0;
+
+      input[type="checkbox"] {
+        margin-right: $tree-base-spacing;
+      }
+    }
+  }
+}
