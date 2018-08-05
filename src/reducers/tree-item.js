@@ -3,7 +3,7 @@ import {
 } from '../constants';
 
 const initialState = {
-  selected: ''
+  selected: [],
 }
 
 const update = (namespace = 'default') => (state = initialState, action) => {
@@ -12,12 +12,12 @@ const update = (namespace = 'default') => (state = initialState, action) => {
       if (action.value === true) {
         return {
           ...state,
-          selected: action.uuid,
+          selected: state.selected.indexOf(action.uuid) !== -1 ? state.selected : [...state.selected, action.uuid],
         }
       } else {
         return {
           ...state,
-          selected: initialState.selected
+          selected: state.selected.filter(s => s !== action.uuid),
         }
       }
 

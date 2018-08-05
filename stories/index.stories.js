@@ -1,16 +1,10 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { linkTo } from '@storybook/addon-links';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
-import { Welcome } from '@storybook/react/demo';
-
 import Tree, { componentReducer } from '../src/index';
-
-import './styles.scss';
 
 const sampleData = [
   {
@@ -57,6 +51,11 @@ const sampleData = [
     "uuid": "5b3e751e-6c51-5e86-b699-7f0e856e7fa1",
     "parent": "403805e0-fd6f-11e7-9f1e-4f11c405dd5a",
     "name": "Chips"
+  }, {
+    "slug": "drinks",
+    "created": "2018-01-19T23:19:51.871Z",
+    "uuid": "403805e0-fd6f-11e7-9f1e-4f12c405dd5a",
+    "name": "Cola"
   }
 ];
 
@@ -95,8 +94,6 @@ const store = createStore(
 if (module.hot) {
   module.hot.accept('../src/reducers', () => store.replaceReducer(require('../src/reducers')));
 }
-
-storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
 storiesOf('Tree', module)
   .add('single component', () => (

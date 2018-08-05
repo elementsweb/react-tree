@@ -68,7 +68,7 @@ describe('Tree', () => {
 
   it('TreeItem has correct props', () => {
     const treeItem = wrapper.childAt(0);
-    expect(treeItem.name()).toEqual('Connect(TreeItem)');
+    expect(treeItem.name()).toEqual('WithStyles(Connect(TreeItem))');
     expect(treeItem.props()).toEqual({
       uuid: 1,
       label: 'Item 1',
@@ -76,6 +76,6 @@ describe('Tree', () => {
       getAllIds: props.selectAllIds,
       selectState: props.selectState,
       onToggle: props.selectItem
-    }); 
+    });
   });
 });

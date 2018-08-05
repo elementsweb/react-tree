@@ -1,7 +1,11 @@
 # React Tree
 
 ## __In development!__
-TODO: Add description
+React based tree view component. Developed to visualise items from a NoSQL database that can be related to one another in a nested fashion.
+
+## Features
+
+✔️ Expand top-level items to reveal child items
 
 ✔️ Integrates with your existing Redux store to allow you to writing middleware for actions emitted by the component
 

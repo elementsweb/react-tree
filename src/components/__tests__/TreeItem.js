@@ -1,5 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Collapse from '@material-ui/core/Collapse';
 
 import {
   TreeItem,
@@ -30,6 +32,12 @@ describe('TreeItem', () => {
       uuid: '1'
     };
     props = {
+      classes: {
+        treeItem: 'treeItem-class',
+        iconButton: 'iconButton-class',
+        iconButtonExpanded: 'iconButtonExpanded-class',
+        checkbox: 'checkbox-class',
+      },
       uuid: '1',
       label: 'Item 1',
       selected: '1',
@@ -60,32 +68,32 @@ describe('TreeItem', () => {
 
   it('should render container component', () => {
     expect(wrapper.name()).toEqual('div');
-    expect(wrapper.hasClass('tree-item')).toEqual(true);
+    expect(wrapper.hasClass('treeItem-class')).toEqual(true);
   });
 
   it('should render container for checkbox and label', () => {
     const container = wrapper.childAt(0);
     expect(container.name()).toEqual('div');
-    expect(container.hasClass('tree-item__content')).toEqual(true);
   });
 
   it('renders a checkbox that calls "onToggle" when changed', () => {
-    const checkbox = wrapper.childAt(0).childAt(0);
-    expect(checkbox.name()).toEqual('input');
-    expect(checkbox.prop('type')).toEqual('checkbox');
+    const checkboxJSON = wrapper.find(FormControlLabel).props().control;
+    const checkbox = shallow(checkboxJSON);
+
+    expect(checkbox.prop('className')).toEqual('checkbox-class');
     expect(checkbox.prop('checked')).toEqual(true);
+    expect(checkbox.prop('onChange')).toEqual(expect.any(Function));
 
     checkbox.simulate('change', {
       target: {
-        checked: true
-      }
+        checked: true,
+      },
     });
     expect(props.onToggle).toHaveBeenCalledWith('1', true);
   });
 
-  it('renders container for TreeItem components', () => {
-    const container = wrapper.childAt(1);
-    expect(container.name()).toEqual('div');
-    expect(container.hasClass('tree-item__children')).toEqual(true);
+  it('renders Collapse component for TreeItem components', () => {
+    const container = wrapper.find(Collapse);
+    expect(container.children().length).toEqual(1);
   });
 });

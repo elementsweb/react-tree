@@ -6,7 +6,7 @@ describe('tree item reducer', () => {
 
   beforeEach(() => {
     initialState = {
-      selected: ''
+      selected: [],
     };
   });
 
@@ -20,17 +20,29 @@ describe('tree item reducer', () => {
       uuid: 1,
       value: true
     })).toEqual({
-      selected: 1
+      selected: [1]
+    });
+  });
+
+  it('should handle @@react-tree/default/SELECT_ITEM for duplicate selected item', () => {
+    initialState.selected = [1];
+    expect(reducer()(initialState, {
+      type: `@@react-tree/default/${SELECT_ITEM}`,
+      uuid: 1,
+      value: true
+    })).toEqual({
+      selected: [1]
     });
   });
 
   it('should handle @@react-tree/default/SELECT_ITEM with "value" === false', () => {
+    initialState.selected = [1];
     expect(reducer()(initialState, {
       type: `@@react-tree/default/${SELECT_ITEM}`,
       uuid: 1,
       value: false
     })).toEqual({
-      selected: initialState.selected
+      selected: [],
     });
   });
 });
